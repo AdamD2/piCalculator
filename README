@@ -1,0 +1,5 @@
+This is a program made in C which uses several methods to calculate the
+irrational number Pi. 
+
+It is recommended to compile the program using the following line:
+gcc -Wall -Werror -O -o piCalculator piCalculator.c -lm
