@@ -20,3 +20,8 @@ void printPi(long double pi);
 
 #define FALSE 0
 #define TRUE 1
+
+#define LEIBNIZ 1
+#define BBP 2
+#define RAMANUJAN 3
+#define GAUSS 4
