@@ -4,59 +4,25 @@
     
 #include "piCalculator.h"
 
-static int factorial(int a);
+int factorial (int a);
+void printTitle (void);
+void printMenu (void);
+void menu (void);
+int repeatPrompt (void);
 
 int main (int argc, char *argv[]) {
     int loop = TRUE;
     char tempLoop;
-    int menuChoice;
-    
-    printf ("==========================================");
-    printf ("Welcome To Pi Calculator");
-    printf ("==========================================\n\n");
+   
+    // Print the program title
+    printTitle ();
     
     do {
-        printf ("Methods: \n\n");
-        printf ("1 - Lebiniz\n");
-        printf ("2 - Bailey-Borwein-Plouffle (Faulty)\n");
-        printf ("3 - Ramanujan-Sato\n");
-        printf ("4 - Gauss-Legendre Pi\n\n");
-        
-        printf ("Which would you like to calculate? ");
-        scanf ("%d", &menuChoice);
-        while (menuChoice < 1 && menuChoice > 4) {
-            printf ("Incorrect input. Choose from either 1, 2, 3 or 4.");
-            printf ("Which would you like to calculate? ");
-            scanf ("%d", &menuChoice);
-        }       
-            
-        switch (menuChoice) {
-            case 1: lebinizPi ();
-            break;
-            case 2: bbpPi ();
-            break;
-            case 3: rsPi ();
-            break;
-            case 4: glPi ();
-            break;
-            default: printf ("An input error occurred. Please try again.");
-            break;
-        }
-        printf ("\n");
-        
-        printf ("Would you like to repeat the program? Y/N");
-        scanf ("%c", &tempLoop);
-        while (tempLoop != 'Y' && tempLoop != 'N') {
-            printf ("Incorrect input. Choose from either Y or N.");
-            printf ("Would you like to repeat the program? Y/N");
-            scanf ("%c", &tempLoop);
-        }
-        
-        if (tempLoop == 'Y') {
-            loop = TRUE;
-        } else {
-            loop = FALSE;
-        }
+        // Print the menu options
+        menu ();
+
+        // Ask the user if they want to repeaet the program
+        loop = repeatPrompt ();
     } while (loop == TRUE);   
     
     return EXIT_SUCCESS;
@@ -131,8 +97,7 @@ void glPi () {
     printPi (pi);
 }
 
-int iterationQuestion (int limit)
-{
+int iterationQuestion (int limit) {
     int iterations;
     
     printf ("How many iterations? ");
@@ -160,4 +125,58 @@ int factorial (int a) {
 
 void printPi (long double pi) {
     printf("\nThe value of pi is %.60Lf", pi);
+}
+
+void printTitle (void) {
+    printf ("==========================================");
+    printf ("Welcome To Pi Calculator");
+    printf ("==========================================\n\n");
+}
+
+void menu (void) {
+    int menuChoice;
+
+    printf ("Methods: \n\n");
+    printf ("1 - Lebiniz\n");
+    printf ("2 - Bailey-Borwein-Plouffle (Faulty)\n");
+    printf ("3 - Ramanujan-Sato\n");
+    printf ("4 - Gauss-Legendre Pi\n\n");
+    
+    printf ("Which would you like to calculate? ");
+    scanf ("%d", &menuChoice);
+    while (menuChoice < 1 && menuChoice > 4) {
+        printf ("Incorrect input. Choose from either 1, 2, 3 or 4.");
+        printf ("Which would you like to calculate? ");
+        scanf ("%d", &menuChoice);
+    }       
+        
+    switch (menuChoice) {
+        case 1: lebinizPi ();
+        break;
+        case 2: bbpPi ();
+        break;
+        case 3: rsPi ();
+        break;
+        case 4: glPi ();
+        break;
+        default: printf ("An input error occurred. Please try again.");
+        break;
+    }
+    printf ("\n");
+}
+
+int repeatPrompt (void) {
+    printf ("Would you like to repeat the program? Y/N");
+    scanf ("%c", &tempLoop);
+    while (tempLoop != 'Y' && tempLoop != 'N') {
+        printf ("Incorrect input. Choose from either Y or N.");
+        printf ("Would you like to repeat the program? Y/N");
+        scanf ("%c", &tempLoop);
+    }
+    
+    if (tempLoop == 'Y') {
+        loop = TRUE;
+    } else {
+        loop = FALSE;
+    }
 }
